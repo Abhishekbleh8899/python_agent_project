@@ -1,0 +1,156 @@
+/ = ROOT the top of file structure hierarchy 
+/bin  = binery / executable files 
+/etc = system config files 
+/home = home directories 
+/opt = optional or third party software 
+/tmp = temprary space 
+/usr = user related programs 
+/var = variables keep things that change often 
+
+applications that are not shipped
+
+with a Linux operating system are typically installed
+
+in either /usr/local or in /opt
+
+
+~ = home directory 
+ example  
+/home/abhishek == ~abhishek
+
+
+
+COMMANDS ==============================================================================================
+pwd = present working directory 
+ls -l = total files in the current directory with details 
+ls -la = show all the hidden files 
+cd = change directory 
+ls = list files in that directory
+ls -F = show the file type of every file 
+use tree to see visual listing of the folder content 
+(sudo snap tree )= install tree first
+
+ 
+cd home = switch to home directory 
+touch = creates an empty file 
+echo "text content" > filename = create a file with the content in it 
+cat = show the contents of the file 
+
+
+ls -ld = shows the details of the directory 
+cp filename destination foldername/ = copy file to desination folder , orignal folder stays in the orignal directory 
+	example 
+	cp test.txt folder1/
+cp filename newname = copy file and rename both orignal and copy will be in the same directory 
+
+cp filename1 filename2 foldername/ = copy multiple file to the desination directory 
+cp -r foldername destinationfoldername = copy a folder and everything inside it to the destination folder
+cp -v filename foldername/ = displayed each file being copied
+which = locates a command 
+man = command is used to see documentation
+cp -p = preserve permisions and every details of orignal file in the copy 
+
+./executablename = to execute the file 
+   
+mv source destination = moves source file to destination 
+
+sort = sorts text in a file 
+
+sudo useradd newuser = create new user named as newuser
+sudo passwd newuser = setpassword for new user 
+sudo useradd -m newuser = create new user with home directory 
+sudo userdel username = delete a user 
+sudo userdel -r username = delete user with their home directory 
+
+
+sudo groupadd groupname = create new group 
+sudo usermod -aG groupname username = adds user to the specified group 
+groups = lists all the availale groups 
+groups username = lists all the grups of user
+
+
+
+tac = show the contents of the file in reverse order
+rm filename = delete a file 
+rm -i filename  = asks before deleting a file 
+rmdir =delete a folder (only works if the folder is empty )
+rm  -r = delete folder and its content inside 
+rm -rf = delete folder forcefully
+nano = create new file and write in it 
+head filename.txt= shows top 10 lines of the file 
+tail filename.txt= last 10 lines of the file 
+
+tail -f filename = follow the file for log files constantly updating files
+
+find =used to find file / folder in a directory 
+	example find -name nameyouwant to search = search for the exact name 
+		find -iname name you want to search = ignores the case sensetive 
+		find /usr -mtime +10 -mtime -90 = find files in usr diectory that are more than 10 days old but less than 90 days (-mtime)=modification time 
+
+tar = creates archive files / bundles file and folders 
+	example tar cf newtarfilename.tar folder to archive 
+tar xf tarfilename location (empty if in same directory) =extract tar file in desired directory  
+gzip = used to zip files and folders 
+gunzip= used to inzip the file 
+redirecting input and output 
+ls > files.txt = save the ls command output to files.txt 
+ls >> files.txt = append the ls command output to files.txt 
+sort < files.txt = send files.txt data to sort funtion using (<)
+diff = show difference between 2 files 
+sdiff = show difference between 2 files side by side 
+vim diff = show difference between 2 files highlited in vim 
+
+
+===================================================
+chmod = modify permissions of a file 
+chmod u+x filename= (u)=user , (+x)= adds xecutable permission the file becomes executable for the user 
+chmod o-w filename = (o)= others , (-w) = removes write permissions 
+
+chmod 7(user)7(group)7(others) filename = Now, anyone can read, write, and execute the file.  
+	read=4, write=2, execute(x)=1
+	7=4+2+1
+
+
+
+	
+	
+ scp -i ubuntu_instance.pem new.txt ubuntu@13.60.215.194:/home/ubuntu/  = established connection between local machine and ec2 instance/linux server
+scp (secured copy)
+ps = show running processes
+ps -e = show all processes running 
+top = realtime process montoring 
+
+ps aux (a = shows processes from all users ) (u= displays user related info ) (x= includes processed that are not attached to terminal )
+
+use & in the last to start a process in the background 
+	example ping google.com > process.txt &
+
+fg%processid
+	example fg%1
+
+kill %processid
+	example kill%1
+
+
+CRON is a time based scheduling service it is used to automate a task 
+
+cron table is a config 
+ 
+ * * * * * command 
+ | | | | |
+ | | | | |	
+ | | | | year
+ | | |  month
+ | | day
+ | hour
+minute
+
+history = shows the histry of cli 
+!N= repeat a command through history number 
+!!= repeat previous command
+
+	
+
+
+
+ 

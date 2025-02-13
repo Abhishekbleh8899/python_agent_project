@@ -1,0 +1,165 @@
+	==================================================
+CREATING AND USING DOCKER CONTAINERS		||
+==================================================
+
+docker container run --pulish 80:80 nginx = launch nginx server that can be accessed through localhost this command runs the container in the foreground with the logs 
+
+docker container run --publish 80:80 --detach nginx = launch nginx server in the background 
+
+docker container run --publish 80:80 --name containername nginx = launch nginx server and give container a name 
+docker container ls = list all the running conatiners 
+
+docker contianer ls -a = list all the containers running and stopped 
+
+=================================================		
+DOCKER NETWORKS					||
+==================================================		
+
+docker container run -p = -p exposes the port on your machine 
+each docker container is connected to a private virtual network "bridge" by defalut the containers connected to the newtork is called bridge 
+all containers connected to the virtual network can talk to eachother without -p
+Publishing the ports are always in host:container format  example : -p 80:80 nginx 
+==================================================
+COMMANDS 					||
+==================================================
+docker container port containername = displays the ports open for the container 
+docker newtwork ls = displays all the network devices are connected to 
+
+docker network inspect network name (exmple host,bridge etc) = displays the containers connected to the network and other info in a json format 
+
+docker container inspect = details about the contianers in json format 
+
+docker network connect networkname container name = connects the container to specified network 
+
+
+==========================================================================
+Types Docker networks							||
+==========================================================================
+1) BRIDGE (DEFAULT)
+Used by default when running a container without specifying a network.
+Allows containers to communicate only if they are on the same bridge network.
+The host cannot directly access containers.
+
+2) HOST 
+it gains performance by skipping virtual network but sacrifices the security of the container model 
+the container on the host network are directly attached to the host interface 
+
+3) NONE
+Completely isolates the container from networking.
+Useful for security or debugging purposes.
+The container cannot connect to other containers, the host, or the internet.
+
+==========================================================================
+DOCKER DNS								||
+==========================================================================
+CANNOT RELY ON DOCKERS IP ADDRESS TO COMMUNICATE WITH EACH OTHER 
+-----------------------------------------------------------------
+a docker containers ip address is not static by default (we can make it static by using docker compose command ) the ip might change after stopping and running the container backup 
+so we cannot relay on the ip address of the container insted we can use container name as the dns name because the container name is unique and it will be easeier to remember 
+
+docker container run --network <network_name> --network-alias <alias_name> <image> = gives alias to a docker container that works as the dns 
+
+
+=======================================================================================================================================================================================
+==========================================================================
+DOCKER IMAGE								||
+==========================================================================
+What is an image 
+	App bineries and dependencies 
+	metadata about the image data and how to run the image 
+
+docker image ls = list all the images you have used 
+
+	docker pull imagename=pull an image from docker hub 
+	docker image push = uploads changed layers to a image registry (docker hub default)
+image tags are labels that point to the image id
+image tags can be anything but it must specify the version or somthing meaningfull
+the default tag is latest but the latest tag should be given to the latest stable version of the image 
+image tags example :- latest(default) ,11.1.1 , mainframe
+
+		docker image tag sourceimage tag targetimage tag = how to retag an image 
+===========================================================================
+IMAGE LAYERS 								||
+===========================================================================
+In Docker, an image is built using multiple layers. These layers help save storage, improve efficiency, and speed up builds
+
+Each Docker image consists of stacked, read-only layers.
+A layer is created when you add a command in a Dockerfile (like RUN, COPY, or ADD).
+Layer Caching: How Docker Speeds Up Builds
+If you rebuild the image and only modify COPY app.py, Docker will reuse all previous layers except the modified one.
+
+
+===========================================
+Layer Caching: How Docker Speeds Up Builds||
+===========================================
+Docker caches unchanged layers to speed up builds.
+If a command doesn’t change, Docker reuses the previous layer.
+If a layer changes, all layers below it must be rebuilt.
+
+docker image inspect imagename = retuns json metadata about the image 
+ 
+
+==========================================
+CREATING IMAGE USING DOCKERFILE		||
+==========================================
+
+
+docker image build -t nginx-with-html . = build an image using docker file (.) in end represents 
+
+docker container run -p 80:80 -rm nginx-with-html = create a container with custom image 
+
+=========================================
+EXAMPLE DOCKERFILE			||
+=========================================
+FROM openjdk:21-jdk			||
+
+WORKDIR /javaapp			||
+
+EXPOSE 8080				||
+
+COPY HelloWorld.java HelloWorld.java	||
+
+RUN javac HelloWorld.java		||
+
+CMD ["java" , "HelloWorld.java"] 	||
+=========================================
+
+========================================================================================================================================================================================
+
+==========================================
+DOCKER VOLUME				||
+==========================================
+A Docker Volume is a persistent storage mechanism that allows data to be stored outside the container's filesystem. Volumes help in data persistence, even if the container is stopped or removed.
+
+Why Use Docker Volumes?
+***********************
+Persist Data → Prevents data loss when containers restart.
+Share Data → Multiple containers can access the same volume
+Easier Backup & Migration – Volumes can be backed up and moved between environments.
+
+docker volume create volumename
+
+sudo docker run -it -v volumename:/dirloc --name my-container-01 ubuntu
+
+UNMOUNTING IS NOT POSSIBLE YOU HAVE TO DELETE THE CONTAINER AND RECREATE IT 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		

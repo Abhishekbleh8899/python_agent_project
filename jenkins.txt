@@ -1,0 +1,70 @@
+Jenkins is an open-source automation server used for continuous integration (CI) and continuous deployment (CD) (CI/CD). It helps automate the process of building, testing, and deploying applications.
+
+Why Use Jenkins?
+==========================
+Automates Repetitive Tasks: Automatically runs builds, tests, and deployments.
+
+Supports CI/CD Pipelines: Integrates with Git, Docker, Kubernetes, AWS, etc.
+
+Extensible with Plugins: Has 1,800+ plugins to integrate with various tools.
+
+Easy to Configure: Uses a web-based UI or Jenkinsfile (pipeline as code).
+
+
+How Jenkins Works
+==========================
+Developers push code to a Git repository (e.g., GitHub, GitLab, Bitbucket).
+
+Jenkins pulls the latest code and triggers a build.
+
+Jenkins runs tests to verify the code.
+
+If successful, Jenkins deploys the application to a server.
+
+
+
+CI WITH JENKINS
+========================================================================================
+
+code build and test as soon as developer commit the changes
+auto deployment on successful software build and notify the stake holder
+notify the errors to the dev team on build failure 
+
+JENKINS MASTER SLAVE
+==========================
+
+Jenkins follow the master slave architecture 
+
+there are 2 types of node 
+master node and slave nodes
+
+Master node = master node works as a controller , it manages the task executing on the worker nodes 
+		all kind of user commands are accepted by the master node and all kind of output given to the user are given by the master node
+
+Worker node = slave node /worker node will work as a execution node ,only work which is to be done by the worker node is the execution 
+  		single master node can have multiple slave nodes 
+		master node controls the load distribution on the slave nodes 
+======================================================================================================
+
+JENKIN JOBS
+================================
+
+jobs in Jenkins are the runnable tasks that is controlled by Jenkins 
+
+for each execution task we need to create a Jenkins jobs 
+
+1) FREESTYLE PROJECT
+	this is most common type of JOB ,In a freestyle job you can create a job where you can execute multiple commands in a shell or windows bash 
+
+2) PIPELINE
+	 these type of project are used to called a workflow which will have some kind of input and produce some output 
+	 these project are normally written in DSL
+
+3) multi configuration project 
+	 it is similar  to freestyle project but it is more flexible in terms of the environment 
+	 where you want to create a project which will be tested on the multiple environment 
+    	 it will require specific configuration for each environment 
+
+
+LOOK FOR PREDEFINED JENKINS ENV VARIABLES 
+ipaddress:port/env-vars.html
